@@ -3,6 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply from: "$rootDir/dependencies.gradle"
 
+//所有子模块都适用subprojects里面的内容
 subprojects {
 
     apply plugin: 'java'
@@ -12,9 +13,9 @@ subprojects {
     targetCompatibility = 1.8
 
     repositories {
-       /* mavenLocal()
+       /* mavenLocal() //本地maven仓库
         maven {
-            url = 'http://nexus.vfinance.cn:9081/content/groups/public/'
+            url = 'http://nexus.vfinance.cn:9081/content/groups/public/' //公司使用的私服
         }*/
         mavenCentral()
     }

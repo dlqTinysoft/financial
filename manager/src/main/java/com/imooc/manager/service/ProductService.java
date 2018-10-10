@@ -81,6 +81,7 @@ public class ProductService {
      * @param product
      */
     private void checkProduct(Product product) {
+        //Spring中Assert就是断言成功的话，程序继续执行，如果断言失败程序就会抛出异常
         Assert.notNull(product.getId(), "编号不可为空");
         //其他非空校验
 
@@ -101,7 +102,6 @@ public class ProductService {
         LOG.debug("查询单个产品，id={}", id);
 
         Product product = repository.findById(id).orElse(null);
-
         LOG.debug("查询单个产品,结果={}", product);
 
         return product;
@@ -126,6 +126,7 @@ public class ProductService {
         Specification<Product> specification = new Specification<Product>() {
             @Override
             public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                //分页查询的三个条件
                 Expression<String> idCol = root.get("id");
                 Expression<BigDecimal> rewardRateCol = root.get("rewardRate");
                 Expression<String> statusCol = root.get("status");
@@ -148,6 +149,7 @@ public class ProductService {
             }
         };
 
+        //将spe和pageable传入即可，jpa帮忙实现了分页查询
         Page<Product> page = repository.findAll(specification, pageable);
 
         LOG.debug("查询产品,结果={}", page);

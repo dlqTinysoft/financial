@@ -43,6 +43,9 @@ public class Order {
     @JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss")
     private Date createAt;
 
+    /**
+     * JsonFormat的作用：响应给客户端的日期格式
+     */
     @JsonFormat(pattern = "YYYY-MM-DD HH:mm:ss")
     private Date updateAt;
 
