@@ -19,9 +19,12 @@ import java.util.List;
 
 /**
  * rpc服务实现类
+ *
+ * 自我感觉，查询一个产品和查询多个产品，岂不是和controoler有点代码重复
+ *
  */
-@AutoJsonRpcServiceImpl
-@Service
+@AutoJsonRpcServiceImpl//rpc的服务端注解
+@Service//spring的注解，来管理这个类
 public class ProductRpcImpl implements ProductRpc {
     private static Logger LOG = LoggerFactory.getLogger(ProductRpcImpl.class);
 

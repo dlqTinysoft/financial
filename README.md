@@ -15,12 +15,102 @@
 
 
 
-===================================笔记==============
+===================================笔记==================
 
 销售端
     订单表
         订单编号，渠道编号，产品编号，用户编号，外部订单编号，
-        类型，状态，金额，备注，创建时间，更新时间，
+        类型，状态，金额，备注，创建时间，更新时间
+        
+
+    功能：产品查询，申购、赎回，对账
+         
+    swagger文档交互
+    swagger编写
+    swagger手动编写文档
+    已有代码生成接口文档
+    
+    产品查询功能：
+            从管理端查询，然后给第三方
+            jsonrpc:内部系统之间交互
+            http不如rpc写法简单
+            webservice  xml方式浪费带宽
+            Thrift grpc等性能高，但是写法复杂
+            
+            内部交互选择jsonRpc通信协议来进行交互
+            
+            jsonRpc： 是什么 类似于http的模式
+                       怎么用
+                  jsonrpc4j框架
+                  https：//github.com/briandilley/jsonrpc4j
+                 api: ProductRpc：产品相关的rpc服务
+                        查询多个产品，查询一个产品
+                 
+                      小技巧：传参数的时候，请求参数使用对象，如果需修改，直接改对象就ok，不用动函数
+                       
+                 在manager里端来实现接口
+                    rpc：ProductRpcImpl
+                    把productService注入进来
+                    把rpc地址交给spring来管理
+                    configuration:RpcConfiguration
+                 seller里代码编写
+                    
+                 rpc原理：
+                    运行原理
+                    路径、参数限制
+                    简化、封装
+                    
+                    客户端：
+                        logging:
+                            level:
+                                com.googlecode.jsonrpc4j:debug
+                         seller客户端
+                         manager：服务端
+                    配置客户端：
+                    step1:   AutoJsonRpcClientProxyCreator
+                             setBaseUrl
+                             setScanPackage
+                    step2:
+                        JsonProxyFactoryBean
+                        objectMapper
+                        JsonRpcHttpClient
+                        
+                     step3:Invoke，
+                      step4:配置服务端，AutoJsonRpcServiceImplExporter
+                                               
+            
+            JSonRpc个性化配置
+                简化、封装
+                    使用类名作为路径
+                    路径、参数限制
+                    自动配置
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
    
 管理端 manager
     数据库的设计
@@ -72,7 +162,41 @@
                 date-format: yyyy-MM-dd HH:mm:ss.SSS
                 time-zone: GMT+8
             
+    自动化测试
+           功能测试
+           src/test/java
+           @BeforeClass:这个类会执行一次
+           @Before，执行每个用例之前都会执行该方法
+           @Test:测试用例
+           Assert
+           @After：每个测试用例执行之后
+           @AfterClass:整个类销魂，之后执行一次
+           
+           @RunWith(SpringRunner.class)
+           @SpringBootTest：启动个随机端口
+           
+           学习java8的lama表达式
+           
+           点击gradle中的任务 build
+           会把测试任务全部执行一遍，如果如有任务都通过，则打包成功否则打包失败
+           
+           @FixMethodOrder() 来定义测试方法的执行顺序
+           
+           自动化测试-总结
+            测试覆盖率，边界条件
+            执行顺序 @FixMethodOrder
+            条件查询测试用例
             
+            
+           
+           
+           
+           
+           
+           
+           
+           
+           
             
             
    

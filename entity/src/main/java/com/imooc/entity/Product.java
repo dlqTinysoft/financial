@@ -1,18 +1,22 @@
 package com.imooc.entity;
 
+import com.google.gson.Gson;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 产品
  */
 @Entity
+@Table(name="manager_t")
 public class Product implements Serializable{
     @Id
     private String id;
@@ -146,6 +150,22 @@ public class Product implements Serializable{
 
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public static void main(String[] args) {
+        Gson gson = new Gson();
+        Product product = new Product();
+        product.setId(UUID.randomUUID().toString());
+        product.setName("基金");
+
+        product.setThresholdAmount(new BigDecimal(1).setScale(BigDecimal.ROUND_CEILING));
+        product.setLockTerm(1);
+        product.setMemo("dd");
+        product.setRewardRate(new BigDecimal(1).setScale(BigDecimal.ROUND_CEILING));
+        product.setStatus("1");
+        product.setStepAmount(new BigDecimal(1));
+        String gsoStr = gson.toJson(product);
+        System.out.println(gsoStr);
     }
 
 }

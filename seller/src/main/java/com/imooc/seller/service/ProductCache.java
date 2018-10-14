@@ -13,6 +13,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -80,5 +81,10 @@ public class ProductCache {
         List<Product> result = productRpc.query(req);
         LOG.info("rpc查询全部产品,结果:{}", result);
         return result;
+    }
+
+    @PostConstruct
+    public void testFindAll(){
+        findAll();
     }
 }

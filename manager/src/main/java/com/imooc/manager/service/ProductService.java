@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-
 import javax.persistence.criteria.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -44,6 +43,8 @@ public class ProductService {
         Product result = repository.save(product);
 
         LOG.debug("创建产品, 结果:{}", result);
+
+
         return result;
     }
 

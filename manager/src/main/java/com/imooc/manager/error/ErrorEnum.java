@@ -17,6 +17,7 @@ public enum  ErrorEnum {
         this.canRetry = canRetry;
     }
 
+    //通过错误码，得到一个枚举
     public static ErrorEnum getByCode(String code){
         for (ErrorEnum errorEnum : ErrorEnum.values()) {
             if(errorEnum.code.equals(code)){

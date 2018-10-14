@@ -35,6 +35,8 @@ public class ProductRpcService implements ApplicationListener<ContextRefreshedEv
 
     static final String MQ_DESTINATION = "Consumer.cache.VirtualTopic.PRODUCT_STATUS";
 
+    //将rpc接口注入进来
+    //建一个配置，文件spring从哪里注入这个rpc服务
     @Autowired
     private ProductRpc productRpc;
 

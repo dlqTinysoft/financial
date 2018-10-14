@@ -14,10 +14,11 @@ import java.util.Map;
 /**
  * 统一错误处理
  */
+//定义了一个统一的异常处理
 //@ControllerAdvice(basePackages = {"com.imooc.manager.controller"})
 public class ErrorControllerAdvice {
-
-    @ExceptionHandler(Exception.class)
+    //也可以put一个json串进去的
+    @ExceptionHandler(Exception.class) //所有抛出的异常，都会被捕获
     @ResponseBody
     public ResponseEntity handleException(Exception e){
         Map<String, Object> attrs = new HashMap();
